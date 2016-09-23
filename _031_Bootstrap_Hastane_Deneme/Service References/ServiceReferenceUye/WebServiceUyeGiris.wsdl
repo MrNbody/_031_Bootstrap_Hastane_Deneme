@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Guncelle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uyeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GuncelleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GuncelleResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Ekle">
+        <s:complexType />
+      </s:element>
+      <s:element name="EkleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EkleResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UyeKontrol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uyeTC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UyeKontrolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UyeKontrolResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GuncelleSoapIn">
+    <wsdl:part name="parameters" element="tns:Guncelle" />
+  </wsdl:message>
+  <wsdl:message name="GuncelleSoapOut">
+    <wsdl:part name="parameters" element="tns:GuncelleResponse" />
+  </wsdl:message>
+  <wsdl:message name="EkleSoapIn">
+    <wsdl:part name="parameters" element="tns:Ekle" />
+  </wsdl:message>
+  <wsdl:message name="EkleSoapOut">
+    <wsdl:part name="parameters" element="tns:EkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="UyeKontrolSoapIn">
+    <wsdl:part name="parameters" element="tns:UyeKontrol" />
+  </wsdl:message>
+  <wsdl:message name="UyeKontrolSoapOut">
+    <wsdl:part name="parameters" element="tns:UyeKontrolResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceUyeGirisSoap">
+    <wsdl:operation name="Guncelle">
+      <wsdl:input message="tns:GuncelleSoapIn" />
+      <wsdl:output message="tns:GuncelleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Ekle">
+      <wsdl:input message="tns:EkleSoapIn" />
+      <wsdl:output message="tns:EkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UyeKontrol">
+      <wsdl:input message="tns:UyeKontrolSoapIn" />
+      <wsdl:output message="tns:UyeKontrolSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceUyeGirisSoap" type="tns:WebServiceUyeGirisSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Guncelle">
+      <soap:operation soapAction="http://tempuri.org/Guncelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ekle">
+      <soap:operation soapAction="http://tempuri.org/Ekle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UyeKontrol">
+      <soap:operation soapAction="http://tempuri.org/UyeKontrol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceUyeGirisSoap12" type="tns:WebServiceUyeGirisSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Guncelle">
+      <soap12:operation soapAction="http://tempuri.org/Guncelle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ekle">
+      <soap12:operation soapAction="http://tempuri.org/Ekle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UyeKontrol">
+      <soap12:operation soapAction="http://tempuri.org/UyeKontrol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceUyeGiris">
+    <wsdl:port name="WebServiceUyeGirisSoap" binding="tns:WebServiceUyeGirisSoap">
+      <soap:address location="http://localhost:51637/webservis/WebServiceUyeGiris.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceUyeGirisSoap12" binding="tns:WebServiceUyeGirisSoap12">
+      <soap12:address location="http://localhost:51637/webservis/WebServiceUyeGiris.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

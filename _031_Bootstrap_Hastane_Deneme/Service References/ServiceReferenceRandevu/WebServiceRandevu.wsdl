@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Ekle">
+        <s:complexType />
+      </s:element>
+      <s:element name="EkleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Sil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="randevuID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SilResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Kontrol">
+        <s:complexType />
+      </s:element>
+      <s:element name="KontrolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KontrolResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CiftTarih">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uyeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tarihBaslangic" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="tarihBitis" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CiftTarihResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CiftTarihResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TekTarih">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uyeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tarih" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TekTarihResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TekTarihResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Varsayilan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tarih" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VarsayilanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VarsayilanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetirRandevuTarih">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetirRandevuTarihResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetirRandevuTarihResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetirDoktor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="doktorID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tarih" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetirDoktorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetirDoktorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EkleSoapIn">
+    <wsdl:part name="parameters" element="tns:Ekle" />
+  </wsdl:message>
+  <wsdl:message name="EkleSoapOut">
+    <wsdl:part name="parameters" element="tns:EkleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SilSoapIn">
+    <wsdl:part name="parameters" element="tns:Sil" />
+  </wsdl:message>
+  <wsdl:message name="SilSoapOut">
+    <wsdl:part name="parameters" element="tns:SilResponse" />
+  </wsdl:message>
+  <wsdl:message name="KontrolSoapIn">
+    <wsdl:part name="parameters" element="tns:Kontrol" />
+  </wsdl:message>
+  <wsdl:message name="KontrolSoapOut">
+    <wsdl:part name="parameters" element="tns:KontrolResponse" />
+  </wsdl:message>
+  <wsdl:message name="CiftTarihSoapIn">
+    <wsdl:part name="parameters" element="tns:CiftTarih" />
+  </wsdl:message>
+  <wsdl:message name="CiftTarihSoapOut">
+    <wsdl:part name="parameters" element="tns:CiftTarihResponse" />
+  </wsdl:message>
+  <wsdl:message name="TekTarihSoapIn">
+    <wsdl:part name="parameters" element="tns:TekTarih" />
+  </wsdl:message>
+  <wsdl:message name="TekTarihSoapOut">
+    <wsdl:part name="parameters" element="tns:TekTarihResponse" />
+  </wsdl:message>
+  <wsdl:message name="VarsayilanSoapIn">
+    <wsdl:part name="parameters" element="tns:Varsayilan" />
+  </wsdl:message>
+  <wsdl:message name="VarsayilanSoapOut">
+    <wsdl:part name="parameters" element="tns:VarsayilanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetirRandevuTarihSoapIn">
+    <wsdl:part name="parameters" element="tns:GetirRandevuTarih" />
+  </wsdl:message>
+  <wsdl:message name="GetirRandevuTarihSoapOut">
+    <wsdl:part name="parameters" element="tns:GetirRandevuTarihResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetirDoktorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetirDoktor" />
+  </wsdl:message>
+  <wsdl:message name="GetirDoktorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetirDoktorResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceRandevuSoap">
+    <wsdl:operation name="Ekle">
+      <wsdl:input message="tns:EkleSoapIn" />
+      <wsdl:output message="tns:EkleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Sil">
+      <wsdl:input message="tns:SilSoapIn" />
+      <wsdl:output message="tns:SilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Kontrol">
+      <wsdl:input message="tns:KontrolSoapIn" />
+      <wsdl:output message="tns:KontrolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevu">
+      <wsdl:input name="CiftTarih" message="tns:CiftTarihSoapIn" />
+      <wsdl:output name="CiftTarih" message="tns:CiftTarihSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuu">
+      <wsdl:input name="TekTarih" message="tns:TekTarihSoapIn" />
+      <wsdl:output name="TekTarih" message="tns:TekTarihSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuuu">
+      <wsdl:input name="Varsayilan" message="tns:VarsayilanSoapIn" />
+      <wsdl:output name="Varsayilan" message="tns:VarsayilanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuTarih">
+      <wsdl:input message="tns:GetirRandevuTarihSoapIn" />
+      <wsdl:output message="tns:GetirRandevuTarihSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetirDoktor">
+      <wsdl:input message="tns:GetirDoktorSoapIn" />
+      <wsdl:output message="tns:GetirDoktorSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceRandevuSoap" type="tns:WebServiceRandevuSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ekle">
+      <soap:operation soapAction="http://tempuri.org/Ekle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sil">
+      <soap:operation soapAction="http://tempuri.org/Sil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Kontrol">
+      <soap:operation soapAction="http://tempuri.org/Kontrol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevu">
+      <soap:operation soapAction="http://tempuri.org/CiftTarih" style="document" />
+      <wsdl:input name="CiftTarih">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CiftTarih">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuu">
+      <soap:operation soapAction="http://tempuri.org/TekTarih" style="document" />
+      <wsdl:input name="TekTarih">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TekTarih">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuuu">
+      <soap:operation soapAction="http://tempuri.org/Varsayilan" style="document" />
+      <wsdl:input name="Varsayilan">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="Varsayilan">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuTarih">
+      <soap:operation soapAction="http://tempuri.org/GetirRandevuTarih" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirDoktor">
+      <soap:operation soapAction="http://tempuri.org/GetirDoktor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceRandevuSoap12" type="tns:WebServiceRandevuSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ekle">
+      <soap12:operation soapAction="http://tempuri.org/Ekle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sil">
+      <soap12:operation soapAction="http://tempuri.org/Sil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Kontrol">
+      <soap12:operation soapAction="http://tempuri.org/Kontrol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevu">
+      <soap12:operation soapAction="http://tempuri.org/CiftTarih" style="document" />
+      <wsdl:input name="CiftTarih">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CiftTarih">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuu">
+      <soap12:operation soapAction="http://tempuri.org/TekTarih" style="document" />
+      <wsdl:input name="TekTarih">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TekTarih">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuuu">
+      <soap12:operation soapAction="http://tempuri.org/Varsayilan" style="document" />
+      <wsdl:input name="Varsayilan">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="Varsayilan">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirRandevuTarih">
+      <soap12:operation soapAction="http://tempuri.org/GetirRandevuTarih" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetirDoktor">
+      <soap12:operation soapAction="http://tempuri.org/GetirDoktor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceRandevu">
+    <wsdl:port name="WebServiceRandevuSoap" binding="tns:WebServiceRandevuSoap">
+      <soap:address location="http://localhost:51637/webservis/WebServiceRandevu.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceRandevuSoap12" binding="tns:WebServiceRandevuSoap12">
+      <soap12:address location="http://localhost:51637/webservis/WebServiceRandevu.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

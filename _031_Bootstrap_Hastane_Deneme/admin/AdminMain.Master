@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMain.master.cs" Inherits="_031_Bootstrap_Hastane_Deneme.admin.AdminMain" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/GirisCss.css" rel="stylesheet" />
+    <link href="../dist/sweetalert.css" rel="stylesheet" />
+    <script src="../dist/sweetalert.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" class="form-horizontal">
+        <div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="Anasayfa.aspx" onclick="loading();">Anasayfa</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="Hastane.aspx" onclick="loading();">Hastane<span class="sr-only">(current)</span></a></li>
+                            <li><a href="Klinik.aspx" onclick="loading();">Klinik</a></li>
+                            <li><a href="Doktor.aspx" onclick="loading();">Doktor</a></li>
+                            <li><a href="Giris.aspx" onclick="loading();">Çıkış</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="icerik">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+    <script src="../bootstrap/js/jquery-3.1.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script>
+        function no(a) {
+            swal({ title: "Başarısız", text: a, type: "error", confirmButtonText: "Geri" });
+        }
+    </script>
+    <script>
+        function yes(a) {
+            swal("Başarılı!", a, "success")
+        }
+    </script>
+    <script>
+        function loading() {
+            swal({ title: "Yükleniyor!", text: "Lütfen bekleyiniz", timer: 500, showConfirmButton: false });
+        }
+    </script>
+</body>
+</html>

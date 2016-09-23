@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12fd010cc86e40c5b932d452c14ac0b2" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="HastaneModel.Doktor" Width="1.5" PointX="7.125" PointY="6.75" />
+        <EntityTypeShape EntityType="HastaneModel.Hastane" Width="1.5" PointX="5" PointY="4.25" />
+        <EntityTypeShape EntityType="HastaneModel.Ilce" Width="1.5" PointX="2.875" PointY="4.25" />
+        <EntityTypeShape EntityType="HastaneModel.Klinik" Width="1.5" PointX="7.125" PointY="4.25" />
+        <EntityTypeShape EntityType="HastaneModel.Mesai" Width="1.5" PointX="5" PointY="6.5" />
+        <EntityTypeShape EntityType="HastaneModel.Randevu" Width="1.5" PointX="5" PointY="8.625" />
+        <EntityTypeShape EntityType="HastaneModel.Saat" Width="1.5" PointX="2.875" PointY="6.5" />
+        <EntityTypeShape EntityType="HastaneModel.Sehir" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="HastaneModel.Uye" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="HastaneModel.viewDoktor" Width="1.5" PointX="8.875" PointY="4.25" />
+        <EntityTypeShape EntityType="HastaneModel.viewRandevuDetay" Width="1.5" PointX="8.875" PointY="7.375" />
+        <AssociationConnector Association="HastaneModel.FK_Doktor_Klinik" />
+        <AssociationConnector Association="HastaneModel.FK_Mesai_Doktor" />
+        <AssociationConnector Association="HastaneModel.FK_Randevu_Doktor" />
+        <AssociationConnector Association="HastaneModel.FK_Saat_Doktor" />
+        <AssociationConnector Association="HastaneModel.FK_Hastane_Ilce" />
+        <AssociationConnector Association="HastaneModel.FK_Klinik_Hastane" />
+        <AssociationConnector Association="HastaneModel.FK_Ilce_Sehir" />
+        <AssociationConnector Association="HastaneModel.FK_Randevu_Uye" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

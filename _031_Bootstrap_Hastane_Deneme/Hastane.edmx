@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HastaneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="klinikID" Type="int" Nullable="false" />
+          <Property Name="doktorEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorTc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorCinsiyet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="doktorSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hastane">
+          <Key>
+            <PropertyRef Name="hastaneID" />
+          </Key>
+          <Property Name="hastaneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilceID" Type="int" Nullable="false" />
+          <Property Name="hastaneAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ilce">
+          <Key>
+            <PropertyRef Name="ilceID" />
+          </Key>
+          <Property Name="ilceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sehirID" Type="int" Nullable="false" />
+          <Property Name="ilceAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klinik">
+          <Key>
+            <PropertyRef Name="klinikID" />
+          </Key>
+          <Property Name="klinikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hastaneID" Type="int" Nullable="false" />
+          <Property Name="klinikAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesai">
+          <Key>
+            <PropertyRef Name="mesaiID" />
+          </Key>
+          <Property Name="mesaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doktorID" Type="int" Nullable="false" />
+          <Property Name="mesaiSaat" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="randevuID" />
+          </Key>
+          <Property Name="randevuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uyeID" Type="int" Nullable="false" />
+          <Property Name="doktorID" Type="int" Nullable="false" />
+          <Property Name="randevuTarihSaat" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Saat">
+          <Key>
+            <PropertyRef Name="saatID" />
+          </Key>
+          <Property Name="saatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doktorID" Type="int" Nullable="false" />
+          <Property Name="saatBaslama" Type="time" Precision="0" Nullable="false" />
+          <Property Name="saatBitis" Type="time" Precision="0" Nullable="false" />
+          <Property Name="saatPeriyot" Type="time" Precision="0" Nullable="false" />
+          <Property Name="saatOgleBaslama" Type="time" Precision="0" Nullable="false" />
+          <Property Name="saatOgleBitis" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sehir">
+          <Key>
+            <PropertyRef Name="sehirID" />
+          </Key>
+          <Property Name="sehirID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sehirAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uye">
+          <Key>
+            <PropertyRef Name="uyeID" />
+          </Key>
+          <Property Name="uyeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uyeEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeTc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeCins" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeDogumYer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeDogumTarih" Type="date" Nullable="false" />
+          <Property Name="uyeBabaAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeAnneAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uyeTel" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hastane.dbo.viewDoktor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+            <PropertyRef Name="doktorAd" />
+            <PropertyRef Name="klinikID" />
+            <PropertyRef Name="klinikAd" />
+            <PropertyRef Name="hastaneID" />
+            <PropertyRef Name="hastaneAd" />
+            <PropertyRef Name="ilceID" />
+            <PropertyRef Name="ilceAd" />
+            <PropertyRef Name="sehirID" />
+            <PropertyRef Name="sehirAd" />
+          </Key>
+          <Property Name="doktorID" Type="int" Nullable="false" />
+          <Property Name="doktorAd" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="klinikID" Type="int" Nullable="false" />
+          <Property Name="klinikAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hastaneID" Type="int" Nullable="false" />
+          <Property Name="hastaneAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilceID" Type="int" Nullable="false" />
+          <Property Name="ilceAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sehirID" Type="int" Nullable="false" />
+          <Property Name="sehirAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hastane.dbo.viewRandevuDetay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="viewRandevuDetay">
+          <Key>
+            <PropertyRef Name="uyeID" />
+            <PropertyRef Name="uyeAd" />
+            <PropertyRef Name="doktorID" />
+            <PropertyRef Name="doktorAd" />
+            <PropertyRef Name="klinikID" />
+            <PropertyRef Name="klinikAd" />
+            <PropertyRef Name="hastaneID" />
+            <PropertyRef Name="hastaneAd" />
+            <PropertyRef Name="ilceID" />
+            <PropertyRef Name="ilceAd" />
+            <PropertyRef Name="sehirID" />
+            <PropertyRef Name="sehirAd" />
+            <PropertyRef Name="randevuID" />
+            <PropertyRef Name="randevuTarihSaat" />
+          </Key>
+          <Property Name="uyeID" Type="int" Nullable="false" />
+          <Property Name="uyeAd" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="doktorID" Type="int" Nullable="false" />
+          <Property Name="doktorAd" Type="nvarchar" MaxLength="101" Nullable="false" />
+          <Property Name="klinikID" Type="int" Nullable="false" />
+          <Property Name="klinikAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hastaneID" Type="int" Nullable="false" />
+          <Property Name="hastaneAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ilceID" Type="int" Nullable="false" />
+          <Property Name="ilceAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sehirID" Type="int" Nullable="false" />
+          <Property Name="sehirAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="randevuID" Type="int" Nullable="false" />
+          <Property Name="randevuTarihSaat" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Doktor_Klinik">
+          <End Role="Klinik" Type="Self.Klinik" Multiplicity="1" />
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinik">
+              <PropertyRef Name="klinikID" />
+            </Principal>
+            <Dependent Role="Doktor">
+              <PropertyRef Name="klinikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hastane_Ilce">
+          <End Role="Ilce" Type="Self.Ilce" Multiplicity="1" />
+          <End Role="Hastane" Type="Self.Hastane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilce">
+              <PropertyRef Name="ilceID" />
+            </Principal>
+            <Dependent Role="Hastane">
+              <PropertyRef Name="ilceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilce_Sehir">
+          <End Role="Sehir" Type="Self.Sehir" Multiplicity="1" />
+          <End Role="Ilce" Type="Self.Ilce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehir">
+              <PropertyRef Name="sehirID" />
+            </Principal>
+            <Dependent Role="Ilce">
+              <PropertyRef Name="sehirID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klinik_Hastane">
+          <End Role="Hastane" Type="Self.Hastane" Multiplicity="1" />
+          <End Role="Klinik" Type="Self.Klinik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hastane">
+              <PropertyRef Name="hastaneID" />
+            </Principal>
+            <Dependent Role="Klinik">
+              <PropertyRef Name="hastaneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesai_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Mesai" Type="Self.Mesai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Mesai">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Uye">
+          <End Role="Uye" Type="Self.Uye" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uye">
+              <PropertyRef Name="uyeID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="uyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saat_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Saat" Type="Self.Saat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Saat">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HastaneModelStoreContainer">
+          <EntitySet Name="Doktor" EntityType="Self.Doktor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hastane" EntityType="Self.Hastane" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ilce" EntityType="Self.Ilce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klinik" EntityType="Self.Klinik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesai" EntityType="Self.Mesai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saat" EntityType="Self.Saat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sehir" EntityType="Self.Sehir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viewDoktor" EntityType="Self.viewDoktor" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewDoktor].[doktorID] AS [doktorID], 
+    [viewDoktor].[doktorAd] AS [doktorAd], 
+    [viewDoktor].[klinikID] AS [klinikID], 
+    [viewDoktor].[klinikAd] AS [klinikAd], 
+    [viewDoktor].[hastaneID] AS [hastaneID], 
+    [viewDoktor].[hastaneAd] AS [hastaneAd], 
+    [viewDoktor].[ilceID] AS [ilceID], 
+    [viewDoktor].[ilceAd] AS [ilceAd], 
+    [viewDoktor].[sehirID] AS [sehirID], 
+    [viewDoktor].[sehirAd] AS [sehirAd]
+    FROM [dbo].[viewDoktor] AS [viewDoktor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewRandevuDetay" EntityType="Self.viewRandevuDetay" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewRandevuDetay].[uyeID] AS [uyeID], 
+    [viewRandevuDetay].[uyeAd] AS [uyeAd], 
+    [viewRandevuDetay].[doktorID] AS [doktorID], 
+    [viewRandevuDetay].[doktorAd] AS [doktorAd], 
+    [viewRandevuDetay].[klinikID] AS [klinikID], 
+    [viewRandevuDetay].[klinikAd] AS [klinikAd], 
+    [viewRandevuDetay].[hastaneID] AS [hastaneID], 
+    [viewRandevuDetay].[hastaneAd] AS [hastaneAd], 
+    [viewRandevuDetay].[ilceID] AS [ilceID], 
+    [viewRandevuDetay].[ilceAd] AS [ilceAd], 
+    [viewRandevuDetay].[sehirID] AS [sehirID], 
+    [viewRandevuDetay].[sehirAd] AS [sehirAd], 
+    [viewRandevuDetay].[randevuID] AS [randevuID], 
+    [viewRandevuDetay].[randevuTarihSaat] AS [randevuTarihSaat]
+    FROM [dbo].[viewRandevuDetay] AS [viewRandevuDetay]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Doktor_Klinik" Association="Self.FK_Doktor_Klinik">
+            <End Role="Klinik" EntitySet="Klinik" />
+            <End Role="Doktor" EntitySet="Doktor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hastane_Ilce" Association="Self.FK_Hastane_Ilce">
+            <End Role="Ilce" EntitySet="Ilce" />
+            <End Role="Hastane" EntitySet="Hastane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilce_Sehir" Association="Self.FK_Ilce_Sehir">
+            <End Role="Sehir" EntitySet="Sehir" />
+            <End Role="Ilce" EntitySet="Ilce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klinik_Hastane" Association="Self.FK_Klinik_Hastane">
+            <End Role="Hastane" EntitySet="Hastane" />
+            <End Role="Klinik" EntitySet="Klinik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesai_Doktor" Association="Self.FK_Mesai_Doktor">
+            <End Role="Doktor" EntitySet="Doktor" />
+            <End Role="Mesai" EntitySet="Mesai" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Doktor" Association="Self.FK_Randevu_Doktor">
+            <End Role="Doktor" EntitySet="Doktor" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Uye" Association="Self.FK_Randevu_Uye">
+            <End Role="Uye" EntitySet="Uye" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saat_Doktor" Association="Self.FK_Saat_Doktor">
+            <End Role="Doktor" EntitySet="Doktor" />
+            <End Role="Saat" EntitySet="Saat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HastaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HastaneEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doktors" EntityType="HastaneModel.Doktor" />
+          <EntitySet Name="Hastanes" EntityType="HastaneModel.Hastane" />
+          <EntitySet Name="Ilces" EntityType="HastaneModel.Ilce" />
+          <EntitySet Name="Kliniks" EntityType="HastaneModel.Klinik" />
+          <EntitySet Name="Mesais" EntityType="HastaneModel.Mesai" />
+          <EntitySet Name="Randevus" EntityType="HastaneModel.Randevu" />
+          <EntitySet Name="Saats" EntityType="HastaneModel.Saat" />
+          <EntitySet Name="Sehirs" EntityType="HastaneModel.Sehir" />
+          <EntitySet Name="Uyes" EntityType="HastaneModel.Uye" />
+          <EntitySet Name="viewDoktors" EntityType="HastaneModel.viewDoktor" />
+          <EntitySet Name="viewRandevuDetays" EntityType="HastaneModel.viewRandevuDetay" />
+          <AssociationSet Name="FK_Doktor_Klinik" Association="HastaneModel.FK_Doktor_Klinik">
+            <End Role="Klinik" EntitySet="Kliniks" />
+            <End Role="Doktor" EntitySet="Doktors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesai_Doktor" Association="HastaneModel.FK_Mesai_Doktor">
+            <End Role="Doktor" EntitySet="Doktors" />
+            <End Role="Mesai" EntitySet="Mesais" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Doktor" Association="HastaneModel.FK_Randevu_Doktor">
+            <End Role="Doktor" EntitySet="Doktors" />
+            <End Role="Randevu" EntitySet="Randevus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saat_Doktor" Association="HastaneModel.FK_Saat_Doktor">
+            <End Role="Doktor" EntitySet="Doktors" />
+            <End Role="Saat" EntitySet="Saats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hastane_Ilce" Association="HastaneModel.FK_Hastane_Ilce">
+            <End Role="Ilce" EntitySet="Ilces" />
+            <End Role="Hastane" EntitySet="Hastanes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klinik_Hastane" Association="HastaneModel.FK_Klinik_Hastane">
+            <End Role="Hastane" EntitySet="Hastanes" />
+            <End Role="Klinik" EntitySet="Kliniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilce_Sehir" Association="HastaneModel.FK_Ilce_Sehir">
+            <End Role="Sehir" EntitySet="Sehirs" />
+            <End Role="Ilce" EntitySet="Ilces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Uye" Association="HastaneModel.FK_Randevu_Uye">
+            <End Role="Uye" EntitySet="Uyes" />
+            <End Role="Randevu" EntitySet="Randevus" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+          </Key>
+          <Property Name="doktorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="klinikID" Type="Int32" Nullable="false" />
+          <Property Name="doktorEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorTc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorCinsiyet" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doktorSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Klinik" Relationship="HastaneModel.FK_Doktor_Klinik" FromRole="Doktor" ToRole="Klinik" />
+          <NavigationProperty Name="Mesais" Relationship="HastaneModel.FK_Mesai_Doktor" FromRole="Doktor" ToRole="Mesai" />
+          <NavigationProperty Name="Randevus" Relationship="HastaneModel.FK_Randevu_Doktor" FromRole="Doktor" ToRole="Randevu" />
+          <NavigationProperty Name="Saats" Relationship="HastaneModel.FK_Saat_Doktor" FromRole="Doktor" ToRole="Saat" />
+        </EntityType>
+        <EntityType Name="Hastane">
+          <Key>
+            <PropertyRef Name="hastaneID" />
+          </Key>
+          <Property Name="hastaneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilceID" Type="Int32" Nullable="false" />
+          <Property Name="hastaneAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ilce" Relationship="HastaneModel.FK_Hastane_Ilce" FromRole="Hastane" ToRole="Ilce" />
+          <NavigationProperty Name="Kliniks" Relationship="HastaneModel.FK_Klinik_Hastane" FromRole="Hastane" ToRole="Klinik" />
+        </EntityType>
+        <EntityType Name="Ilce">
+          <Key>
+            <PropertyRef Name="ilceID" />
+          </Key>
+          <Property Name="ilceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sehirID" Type="Int32" Nullable="false" />
+          <Property Name="ilceAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hastanes" Relationship="HastaneModel.FK_Hastane_Ilce" FromRole="Ilce" ToRole="Hastane" />
+          <NavigationProperty Name="Sehir" Relationship="HastaneModel.FK_Ilce_Sehir" FromRole="Ilce" ToRole="Sehir" />
+        </EntityType>
+        <EntityType Name="Klinik">
+          <Key>
+            <PropertyRef Name="klinikID" />
+          </Key>
+          <Property Name="klinikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hastaneID" Type="Int32" Nullable="false" />
+          <Property Name="klinikAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Doktors" Relationship="HastaneModel.FK_Doktor_Klinik" FromRole="Klinik" ToRole="Doktor" />
+          <NavigationProperty Name="Hastane" Relationship="HastaneModel.FK_Klinik_Hastane" FromRole="Klinik" ToRole="Hastane" />
+        </EntityType>
+        <EntityType Name="Mesai">
+          <Key>
+            <PropertyRef Name="mesaiID" />
+          </Key>
+          <Property Name="mesaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doktorID" Type="Int32" Nullable="false" />
+          <Property Name="mesaiSaat" Type="Time" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Doktor" Relationship="HastaneModel.FK_Mesai_Doktor" FromRole="Mesai" ToRole="Doktor" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="randevuID" />
+          </Key>
+          <Property Name="randevuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uyeID" Type="Int32" Nullable="false" />
+          <Property Name="doktorID" Type="Int32" Nullable="false" />
+          <Property Name="randevuTarihSaat" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Doktor" Relationship="HastaneModel.FK_Randevu_Doktor" FromRole="Randevu" ToRole="Doktor" />
+          <NavigationProperty Name="Uye" Relationship="HastaneModel.FK_Randevu_Uye" FromRole="Randevu" ToRole="Uye" />
+        </EntityType>
+        <EntityType Name="Saat">
+          <Key>
+            <PropertyRef Name="saatID" />
+          </Key>
+          <Property Name="saatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doktorID" Type="Int32" Nullable="false" />
+          <Property Name="saatBaslama" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="saatBitis" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="saatPeriyot" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="saatOgleBaslama" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="saatOgleBitis" Type="Time" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Doktor" Relationship="HastaneModel.FK_Saat_Doktor" FromRole="Saat" ToRole="Doktor" />
+        </EntityType>
+        <EntityType Name="Sehir">
+          <Key>
+            <PropertyRef Name="sehirID" />
+          </Key>
+          <Property Name="sehirID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sehirAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ilces" Relationship="HastaneModel.FK_Ilce_Sehir" FromRole="Sehir" ToRole="Ilce" />
+        </EntityType>
+        <EntityType Name="Uye">
+          <Key>
+            <PropertyRef Name="uyeID" />
+          </Key>
+          <Property Name="uyeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uyeEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeTc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeCins" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeDogumYer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeDogumTarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="uyeBabaAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeAnneAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uyeTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Randevus" Relationship="HastaneModel.FK_Randevu_Uye" FromRole="Uye" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="viewDoktor">
+          <Key>
+            <PropertyRef Name="doktorID" />
+            <PropertyRef Name="doktorAd" />
+            <PropertyRef Name="klinikID" />
+            <PropertyRef Name="klinikAd" />
+            <PropertyRef Name="hastaneID" />
+            <PropertyRef Name="hastaneAd" />
+            <PropertyRef Name="ilceID" />
+            <PropertyRef Name="ilceAd" />
+            <PropertyRef Name="sehirID" />
+            <PropertyRef Name="sehirAd" />
+          </Key>
+          <Property Name="doktorID" Type="Int32" Nullable="false" />
+          <Property Name="doktorAd" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="klinikID" Type="Int32" Nullable="false" />
+          <Property Name="klinikAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hastaneID" Type="Int32" Nullable="false" />
+          <Property Name="hastaneAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ilceID" Type="Int32" Nullable="false" />
+          <Property Name="ilceAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sehirID" Type="Int32" Nullable="false" />
+          <Property Name="sehirAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="viewRandevuDetay">
+          <Key>
+            <PropertyRef Name="uyeID" />
+            <PropertyRef Name="uyeAd" />
+            <PropertyRef Name="doktorID" />
+            <PropertyRef Name="doktorAd" />
+            <PropertyRef Name="klinikID" />
+            <PropertyRef Name="klinikAd" />
+            <PropertyRef Name="hastaneID" />
+            <PropertyRef Name="hastaneAd" />
+            <PropertyRef Name="ilceID" />
+            <PropertyRef Name="ilceAd" />
+            <PropertyRef Name="sehirID" />
+            <PropertyRef Name="sehirAd" />
+            <PropertyRef Name="randevuID" />
+            <PropertyRef Name="randevuTarihSaat" />
+          </Key>
+          <Property Name="uyeID" Type="Int32" Nullable="false" />
+          <Property Name="uyeAd" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="doktorID" Type="Int32" Nullable="false" />
+          <Property Name="doktorAd" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+          <Property Name="klinikID" Type="Int32" Nullable="false" />
+          <Property Name="klinikAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hastaneID" Type="Int32" Nullable="false" />
+          <Property Name="hastaneAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ilceID" Type="Int32" Nullable="false" />
+          <Property Name="ilceAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sehirID" Type="Int32" Nullable="false" />
+          <Property Name="sehirAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="randevuID" Type="Int32" Nullable="false" />
+          <Property Name="randevuTarihSaat" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK_Doktor_Klinik">
+          <End Type="HastaneModel.Klinik" Role="Klinik" Multiplicity="1" />
+          <End Type="HastaneModel.Doktor" Role="Doktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klinik">
+              <PropertyRef Name="klinikID" />
+            </Principal>
+            <Dependent Role="Doktor">
+              <PropertyRef Name="klinikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesai_Doktor">
+          <End Type="HastaneModel.Doktor" Role="Doktor" Multiplicity="1" />
+          <End Type="HastaneModel.Mesai" Role="Mesai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Mesai">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Doktor">
+          <End Type="HastaneModel.Doktor" Role="Doktor" Multiplicity="1" />
+          <End Type="HastaneModel.Randevu" Role="Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saat_Doktor">
+          <End Type="HastaneModel.Doktor" Role="Doktor" Multiplicity="1" />
+          <End Type="HastaneModel.Saat" Role="Saat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="doktorID" />
+            </Principal>
+            <Dependent Role="Saat">
+              <PropertyRef Name="doktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hastane_Ilce">
+          <End Type="HastaneModel.Ilce" Role="Ilce" Multiplicity="1" />
+          <End Type="HastaneModel.Hastane" Role="Hastane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilce">
+              <PropertyRef Name="ilceID" />
+            </Principal>
+            <Dependent Role="Hastane">
+              <PropertyRef Name="ilceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klinik_Hastane">
+          <End Type="HastaneModel.Hastane" Role="Hastane" Multiplicity="1" />
+          <End Type="HastaneModel.Klinik" Role="Klinik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hastane">
+              <PropertyRef Name="hastaneID" />
+            </Principal>
+            <Dependent Role="Klinik">
+              <PropertyRef Name="hastaneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilce_Sehir">
+          <End Type="HastaneModel.Sehir" Role="Sehir" Multiplicity="1" />
+          <End Type="HastaneModel.Ilce" Role="Ilce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehir">
+              <PropertyRef Name="sehirID" />
+            </Principal>
+            <Dependent Role="Ilce">
+              <PropertyRef Name="sehirID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Uye">
+          <End Type="HastaneModel.Uye" Role="Uye" Multiplicity="1" />
+          <End Type="HastaneModel.Randevu" Role="Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uye">
+              <PropertyRef Name="uyeID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="uyeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HastaneModelStoreContainer" CdmEntityContainer="HastaneEntities">
+          <EntitySetMapping Name="Doktors">
+            <EntityTypeMapping TypeName="HastaneModel.Doktor">
+              <MappingFragment StoreEntitySet="Doktor">
+                <ScalarProperty Name="doktorSifre" ColumnName="doktorSifre" />
+                <ScalarProperty Name="doktorCinsiyet" ColumnName="doktorCinsiyet" />
+                <ScalarProperty Name="doktorTel" ColumnName="doktorTel" />
+                <ScalarProperty Name="doktorTc" ColumnName="doktorTc" />
+                <ScalarProperty Name="doktorSoyad" ColumnName="doktorSoyad" />
+                <ScalarProperty Name="doktorAd" ColumnName="doktorAd" />
+                <ScalarProperty Name="doktorEmail" ColumnName="doktorEmail" />
+                <ScalarProperty Name="klinikID" ColumnName="klinikID" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hastanes">
+            <EntityTypeMapping TypeName="HastaneModel.Hastane">
+              <MappingFragment StoreEntitySet="Hastane">
+                <ScalarProperty Name="hastaneAd" ColumnName="hastaneAd" />
+                <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+                <ScalarProperty Name="hastaneID" ColumnName="hastaneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ilces">
+            <EntityTypeMapping TypeName="HastaneModel.Ilce">
+              <MappingFragment StoreEntitySet="Ilce">
+                <ScalarProperty Name="ilceAd" ColumnName="ilceAd" />
+                <ScalarProperty Name="sehirID" ColumnName="sehirID" />
+                <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kliniks">
+            <EntityTypeMapping TypeName="HastaneModel.Klinik">
+              <MappingFragment StoreEntitySet="Klinik">
+                <ScalarProperty Name="klinikAd" ColumnName="klinikAd" />
+                <ScalarProperty Name="hastaneID" ColumnName="hastaneID" />
+                <ScalarProperty Name="klinikID" ColumnName="klinikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesais">
+            <EntityTypeMapping TypeName="HastaneModel.Mesai">
+              <MappingFragment StoreEntitySet="Mesai">
+                <ScalarProperty Name="mesaiSaat" ColumnName="mesaiSaat" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="mesaiID" ColumnName="mesaiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Randevus">
+            <EntityTypeMapping TypeName="HastaneModel.Randevu">
+              <MappingFragment StoreEntitySet="Randevu">
+                <ScalarProperty Name="randevuTarihSaat" ColumnName="randevuTarihSaat" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="uyeID" ColumnName="uyeID" />
+                <ScalarProperty Name="randevuID" ColumnName="randevuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saats">
+            <EntityTypeMapping TypeName="HastaneModel.Saat">
+              <MappingFragment StoreEntitySet="Saat">
+                <ScalarProperty Name="saatOgleBitis" ColumnName="saatOgleBitis" />
+                <ScalarProperty Name="saatOgleBaslama" ColumnName="saatOgleBaslama" />
+                <ScalarProperty Name="saatPeriyot" ColumnName="saatPeriyot" />
+                <ScalarProperty Name="saatBitis" ColumnName="saatBitis" />
+                <ScalarProperty Name="saatBaslama" ColumnName="saatBaslama" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="saatID" ColumnName="saatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sehirs">
+            <EntityTypeMapping TypeName="HastaneModel.Sehir">
+              <MappingFragment StoreEntitySet="Sehir">
+                <ScalarProperty Name="sehirAd" ColumnName="sehirAd" />
+                <ScalarProperty Name="sehirID" ColumnName="sehirID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyes">
+            <EntityTypeMapping TypeName="HastaneModel.Uye">
+              <MappingFragment StoreEntitySet="Uye">
+                <ScalarProperty Name="uyeTel" ColumnName="uyeTel" />
+                <ScalarProperty Name="uyeAnneAd" ColumnName="uyeAnneAd" />
+                <ScalarProperty Name="uyeBabaAd" ColumnName="uyeBabaAd" />
+                <ScalarProperty Name="uyeDogumTarih" ColumnName="uyeDogumTarih" />
+                <ScalarProperty Name="uyeDogumYer" ColumnName="uyeDogumYer" />
+                <ScalarProperty Name="uyeCins" ColumnName="uyeCins" />
+                <ScalarProperty Name="uyeSoyad" ColumnName="uyeSoyad" />
+                <ScalarProperty Name="uyeAd" ColumnName="uyeAd" />
+                <ScalarProperty Name="uyeTc" ColumnName="uyeTc" />
+                <ScalarProperty Name="uyeSifre" ColumnName="uyeSifre" />
+                <ScalarProperty Name="uyeEmail" ColumnName="uyeEmail" />
+                <ScalarProperty Name="uyeID" ColumnName="uyeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewDoktors">
+            <EntityTypeMapping TypeName="HastaneModel.viewDoktor">
+              <MappingFragment StoreEntitySet="viewDoktor">
+                <ScalarProperty Name="sehirAd" ColumnName="sehirAd" />
+                <ScalarProperty Name="sehirID" ColumnName="sehirID" />
+                <ScalarProperty Name="ilceAd" ColumnName="ilceAd" />
+                <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+                <ScalarProperty Name="hastaneAd" ColumnName="hastaneAd" />
+                <ScalarProperty Name="hastaneID" ColumnName="hastaneID" />
+                <ScalarProperty Name="klinikAd" ColumnName="klinikAd" />
+                <ScalarProperty Name="klinikID" ColumnName="klinikID" />
+                <ScalarProperty Name="doktorAd" ColumnName="doktorAd" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewRandevuDetays">
+            <EntityTypeMapping TypeName="HastaneModel.viewRandevuDetay">
+              <MappingFragment StoreEntitySet="viewRandevuDetay">
+                <ScalarProperty Name="randevuTarihSaat" ColumnName="randevuTarihSaat" />
+                <ScalarProperty Name="randevuID" ColumnName="randevuID" />
+                <ScalarProperty Name="sehirAd" ColumnName="sehirAd" />
+                <ScalarProperty Name="sehirID" ColumnName="sehirID" />
+                <ScalarProperty Name="ilceAd" ColumnName="ilceAd" />
+                <ScalarProperty Name="ilceID" ColumnName="ilceID" />
+                <ScalarProperty Name="hastaneAd" ColumnName="hastaneAd" />
+                <ScalarProperty Name="hastaneID" ColumnName="hastaneID" />
+                <ScalarProperty Name="klinikAd" ColumnName="klinikAd" />
+                <ScalarProperty Name="klinikID" ColumnName="klinikID" />
+                <ScalarProperty Name="doktorAd" ColumnName="doktorAd" />
+                <ScalarProperty Name="doktorID" ColumnName="doktorID" />
+                <ScalarProperty Name="uyeAd" ColumnName="uyeAd" />
+                <ScalarProperty Name="uyeID" ColumnName="uyeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
